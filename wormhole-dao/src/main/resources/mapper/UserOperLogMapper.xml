@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mytijian.wormhole.dao.dao.UserOperLogMapper">
+  <!--<resultMap id="BaseResultMap" tyUserOperLogrLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="access_id" jdbcType="INTEGER" property="accessId" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="oper_key" jdbcType="VARCHAR" property="operKey" />
+    <result column="success" jdbcType="VARCHAR" property="success" />
+    <result column="exception_info" jdbcType="VARCHAR" property="exceptionInfo" />
+    <result column="oper_date" jdbcType="TIMESTAMP" property="operDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, access_id, id_card, name, type, oper_key, success, exception_info, oper_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wormhole_user_oper_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_wormhole_user_oper_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterTyUserOperLogrLog">
+    insert into tb_wormhole_user_oper_log (id, user_id, access_id, 
+      id_card, name, type, 
+      oper_key, success, exception_info, 
+      oper_date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{accessId,jdbcType=INTEGER}, 
+      #{idCard,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{operKey,jdbcType=VARCHAR}, #{success,jdbcType=VARCHAR}, #{exceptionInfo,jdbcType=VARCHAR}, 
+      #{operDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterTyUserOperLogrLog">
+    insert into tb_wormhole_user_oper_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="accessId != null">
+        access_id,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="operKey != null">
+        oper_key,
+      </if>
+      <if test="success != null">
+        success,
+      </if>
+      <if test="exceptionInfo != null">
+        exception_info,
+      </if>
+      <if test="operDate != null">
+        oper_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="accessId != null">
+        #{accessId,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="operKey != null">
+        #{operKey,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null">
+        #{success,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionInfo != null">
+        #{exceptionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operDate != null">
+        #{operDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterTyUserOperLogrLog">
+    update tb_wormhole_user_oper_log
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="accessId != null">
+        access_id = #{accessId,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="operKey != null">
+        oper_key = #{operKey,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null">
+        success = #{success,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionInfo != null">
+        exception_info = #{exceptionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operDate != null">
+        oper_date = #{operDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterTyUserOperLogrLog">
+    update tb_wormhole_user_oper_log
+    set user_id = #{userId,jdbcType=INTEGER},
+      access_id = #{accessId,jdbcType=INTEGER},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      oper_key = #{operKey,jdbcType=VARCHAR},
+      success = #{success,jdbcType=VARCHAR},
+      exception_info = #{exceptionInfo,jdbcType=VARCHAR},
+      oper_date = #{operDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>-->
+</mapper>

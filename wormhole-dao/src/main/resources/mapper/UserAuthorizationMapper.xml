@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mytijian.wormhole.dao.dao.UserAuthorizationMapper">
+  <!--<resultMap id="BaseResultMap" type="com.mytijian.wormhole.model.UserAuthorizationtion">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="access_id" jdbcType="INTEGER" property="accessId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="marriage_status" jdbcType="VARCHAR" property="marriageStatus" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="is_sso" jdbcType="VARCHAR" property="isSso" />
+    <result column="sso_date" jdbcType="TIMESTAMP" property="ssoDate" />
+    <result column="is_medical_report" jdbcType="VARCHAR" property="isMedicalReport" />
+    <result column="medical_report_date" jdbcType="TIMESTAMP" property="medicalReportDate" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, access_id, user_id, id_card, name, mobile, gender, marriage_status, status, is_sso, 
+    sso_date, is_medical_report, medical_report_date, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wormhole_user_authorization
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_wormhole_user_authorization
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterTyUserAuthorizationtion">
+    insert into tb_wormhole_user_authorization (id, access_id, user_id, 
+      id_card, name, mobile, 
+      gender, marriage_status, status, 
+      is_sso, sso_date, is_medical_report, 
+      medical_report_date, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{accessId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{idCard,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{marriageStatus,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{isSso,jdbcType=VARCHAR}, #{ssoDate,jdbcType=TIMESTAMP}, #{isMedicalReport,jdbcType=VARCHAR}, 
+      #{medicalReportDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterTyUserAuthorizationtion">
+    insert into tb_wormhole_user_authorization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accessId != null">
+        access_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="marriageStatus != null">
+        marriage_status,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isSso != null">
+        is_sso,
+      </if>
+      <if test="ssoDate != null">
+        sso_date,
+      </if>
+      <if test="isMedicalReport != null">
+        is_medical_report,
+      </if>
+      <if test="medicalReportDate != null">
+        medical_report_date,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accessId != null">
+        #{accessId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null">
+        #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="isSso != null">
+        #{isSso,jdbcType=VARCHAR},
+      </if>
+      <if test="ssoDate != null">
+        #{ssoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMedicalReport != null">
+        #{isMedicalReport,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalReportDate != null">
+        #{medicalReportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterTyUserAuthorizationtion">
+    update tb_wormhole_user_authorization
+    <set>
+      <if test="accessId != null">
+        access_id = #{accessId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null">
+        marriage_status = #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="isSso != null">
+        is_sso = #{isSso,jdbcType=VARCHAR},
+      </if>
+      <if test="ssoDate != null">
+        sso_date = #{ssoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMedicalReport != null">
+        is_medical_report = #{isMedicalReport,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalReportDate != null">
+        medical_report_date = #{medicalReportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterTyUserAuthorizationtion">
+    update tb_wormhole_user_authorization
+    set access_id = #{accessId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      marriage_status = #{marriageStatus,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      is_sso = #{isSso,jdbcType=VARCHAR},
+      sso_date = #{ssoDate,jdbcType=TIMESTAMP},
+      is_medical_report = #{isMedicalReport,jdbcType=VARCHAR},
+      medical_report_date = #{medicalReportDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>-->
+</mapper>
