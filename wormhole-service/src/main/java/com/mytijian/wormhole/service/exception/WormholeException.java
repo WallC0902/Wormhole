@@ -1,5 +1,7 @@
 package com.mytijian.wormhole.service.exception;
 
+import com.mytijian.wormhole.service.constant.WormholeResultCode;
+
 /**
  * 统一错误码异常
  *
@@ -17,8 +19,15 @@ public class WormholeException extends RuntimeException {
      */
     private String message;
 
-    public WormholeException(String code, String message) {
-        this.code = code;
+    public WormholeException(WormholeResultCode wormholeResultCode) {
+        super(wormholeResultCode.getMessage());
+        this.code = wormholeResultCode.getCode();
+        this.message = wormholeResultCode.getMessage();
+    }
+
+    public WormholeException(String message) {
+        super(message);
+        this.code = WormholeResultCode.UNKNOWN.getCode();
         this.message = message;
     }
 

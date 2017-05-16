@@ -1,5 +1,6 @@
 package com.mytijian.wormhole.web.handler;
 
+import com.mytijian.wormhole.service.constant.WormholeResultCode;
 import com.mytijian.wormhole.web.dto.ResultDTO;
 import com.mytijian.wormhole.service.exception.WormholeException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,10 +16,19 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class GlobalErrorHandler {
 
-    @ExceptionHandler(value = WormholeException.class)
+    @ExceptionHandler(value = Exception.class)
     public ResultDTO errorHandlerOverJson(HttpServletRequest request,
-                                          WormholeException exception) {
-        ResultDTO result = new ResultDTO(exception.getCode(), exception.getMessage());
+                                          Exception e) {
+        ResultDTO result = null;
+        if (e instanceof WormholeException) {
+            WormholeException exception  = (WormholeException)e;
+            result = new ResultDTO(exception.getCode(), exception.getMessage());
+        } else {
+            result = new ResultDTO(
+                    WormholeResultCode.UNKNOWN.getCode(),
+                    e.getMessage()
+            );
+        }
         return result;
     }
 }

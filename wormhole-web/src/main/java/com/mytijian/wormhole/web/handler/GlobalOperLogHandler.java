@@ -34,7 +34,7 @@ public class GlobalOperLogHandler {
 
     private ThreadLocal<UserOperLog> threadLocal = new ThreadLocal<>();
 
-    @Pointcut("execution(* com.mytijian.wormhole.service.controller..*.*(..))")
+    @Pointcut("execution(* com.mytijian.wormhole.web.controller..*.*(..))")
     public void webRequestLog(){}
 
     @Autowired
@@ -88,7 +88,6 @@ public class GlobalOperLogHandler {
      * 后置最终通知（目标方法只要执行完了就会执行后置通知方法）
      * @param result
      */
-    @Order(5)
     @AfterReturning(returning = "result", pointcut = "webRequestLog()")
     public void doAfterReturning(Object result) {
         try {

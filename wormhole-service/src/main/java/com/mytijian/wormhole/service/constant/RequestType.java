@@ -8,8 +8,10 @@ package com.mytijian.wormhole.service.constant;
 public enum RequestType {
 
     TYPE_SSO("单点登录"),
+    TYPE_USER_AUTH_SSO("用户授权"),
+    TYPE_USER_AUTH_MEDICAL_REPORT("用户授权"),
     TYPE_QUERY_ORDER("订单查询"),
-    TYPE_REPORT("体检报告查询");
+    TYPE_QUERY_MEDICAL_REPORT("体检报告查询");
 
     private String description;
 

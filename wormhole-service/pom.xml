@@ -17,6 +17,11 @@
         </dependency>
         <dependency>
             <groupId>com.mytijian.wormhole</groupId>
+            <artifactId>wormhole-base</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mytijian.wormhole</groupId>
             <artifactId>wormhole-dao</artifactId>
             <version>${project.version}</version>
         </dependency>
