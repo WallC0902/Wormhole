@@ -6,7 +6,6 @@ import com.mytijian.wormhole.base.constant.Constants;
 import com.mytijian.wormhole.base.tools.AbstractEncrypt;
 import com.mytijian.wormhole.dao.model.Access;
 import com.mytijian.wormhole.dao.model.UserOperLog;
-import com.mytijian.wormhole.service.constant.RequestType;
 import com.mytijian.wormhole.service.constant.WormholeResultCode;
 import com.mytijian.wormhole.service.exception.WormholeException;
 import com.mytijian.wormhole.service.service.AccessService;

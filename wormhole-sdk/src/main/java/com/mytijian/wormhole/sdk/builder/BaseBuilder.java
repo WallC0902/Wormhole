@@ -10,9 +10,7 @@ public class BaseBuilder {
 
     private String mid;
 
-    private String secret;
-
-    private String key;
+    private String sign;
 
     public JSONObject build(String mid)
     {
@@ -29,19 +27,12 @@ public class BaseBuilder {
         this.mid = mid;
     }
 
-    public String getSecret() {
-        return secret;
+
+    public String getSign() {
+        return sign;
     }
 
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 }

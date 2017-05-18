@@ -15,6 +15,8 @@ public enum WormholeResultCode {
     PARAM_ERROR("-102", "参数异常"),
     DB_ERROR("-103", "数据层异常"),
 
+
+
     SSO_AUTH_FAIL_EMPTY_MID("-104", "认证信息：mid为空"),
     SSO_AUTH_FAIL_EMPTY_SECRET("-105", "认证信息：secret为空"),
     SSO_AUTH_FAIL_EMPTY_KEY("-106", "认证信息：key为空"),

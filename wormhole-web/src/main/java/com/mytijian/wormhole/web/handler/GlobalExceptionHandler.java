@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
  * Created by wangchangpeng on 2017/05/09.
  */
 @RestControllerAdvice
-public class GlobalErrorHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
-    public ResultDTO errorHandlerOverJson(HttpServletRequest request,
+    public ResultDTO exceptionHandlerOverJson(HttpServletRequest request,
                                           Exception e) {
         ResultDTO result = null;
         if (e instanceof WormholeException) {

@@ -21,9 +21,9 @@
     </modules>
 
     <scm>
-        <connection>scm:git: https://git.oschina.net/mytj/wormhole.git</connection>
-        <url>scm:git: https://git.oschina.net/mytj/wormhole.git</url>
-        <developerConnection>scm:git: https://git.oschina.net/mytj/wormhole.git</developerConnection>
+        <connection>scm:git: https://git.oschina.net/mytj/Wormhole.git</connection>
+        <url>scm:git: https://git.oschina.net/mytj/Wormhole.git</url>
+        <developerConnection>scm:git: https://git.oschina.net/mytj/Wormhole.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
