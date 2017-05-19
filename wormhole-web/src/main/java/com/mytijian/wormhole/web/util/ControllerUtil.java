@@ -47,6 +47,10 @@ public class ControllerUtil {
         return JSON.toJSONString(resultDTO);
     }
 
+    private void signatureData (ResultDTO resultDTO, String publicKey) {
+
+    }
+
     public static String bulidUrl(String sessionId, ResRedirectEnum resRedirectEnum) {
         return Constants.MT_REDIRECT
                 + "?token="

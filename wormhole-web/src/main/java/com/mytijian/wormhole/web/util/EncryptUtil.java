@@ -11,25 +11,25 @@ public class EncryptUtil {
      * 给数据加签名
      *
      * @param data
-     * @param privateKey
+     * @param publicKey
      * @return
      * @throws Exception
      */
-    public static String sign(String data, String privateKey) throws Exception {
-        return RSA.sign(data.getBytes(), privateKey);
+    public static String sign(String data, String publicKey) throws Exception {
+        return RSA.sign(data.getBytes(), publicKey);
     }
 
     /**
      * 验证签名
      *
      * @param data
-     * @param privateKey
+     * @param publicKey
      * @param signatrue
      * @return
      * @throws Exception
      */
-    public static boolean verify(String data, String privateKey, String signatrue) throws Exception {
-        return RSA.verify(data.getBytes(), privateKey, signatrue);
+    public static boolean verify(String data, String publicKey, String signatrue) throws Exception {
+        return RSA.verify(data.getBytes(), publicKey, signatrue);
     }
 
 }

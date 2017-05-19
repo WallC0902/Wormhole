@@ -6,8 +6,8 @@ package com.mytijian.wormhole.base.constant;
 public enum UserAuthEnum {
 
     SSO_LOGIN("LOGIN", "http://...."),
-    SSO_USER_AUTH_URL("REDIRECT", ""),
-    SSO_MEDICAL_REPORT_URL("REDIRECT", ""),
+    SSO_USER_AUTH_URL("REDIRECT", ""), // SSO授权页面跳转
+    SSO_MEDICAL_REPORT_URL("REDIRECT", ""), // 体检报告授权页面跳转
 
         ;
     private String status;

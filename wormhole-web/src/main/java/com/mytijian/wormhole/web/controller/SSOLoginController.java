@@ -43,7 +43,9 @@ public class SSOLoginController {
      */
     @PostMapping("/sso/login")
     public String ssoLogin (DecryptBO decryptBO) {
-
+        if (StringUtils.isBlank(decryptBO.getMobile())) {
+            throw new WormholeException(WormholeResultCode.SSO_AUTH_FAIL_EMPTY_MOBILE);
+        }
         boolean flag = userAuthorizationService.checkUserAuthoriz(
                 decryptBO.getMid(),
                 decryptBO.getIdCard(),

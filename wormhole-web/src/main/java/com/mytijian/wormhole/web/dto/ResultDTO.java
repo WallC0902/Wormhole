@@ -19,6 +19,11 @@ public class ResultDTO<T> {
     private String message;
 
     /**
+     * 数字签名
+     */
+    private String signature;
+
+    /**
      * 响应结果
      */
     private T result;
@@ -48,6 +53,14 @@ public class ResultDTO<T> {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 
     public T getResult() {
