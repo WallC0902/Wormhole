@@ -1,25 +1,26 @@
 package com.mytijian.wormhole.web.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.mytijian.wormhole.dao.constant.YesOrNo;
+import com.mytijian.wormhole.dao.model.UserOperLog;
 import com.mytijian.wormhole.service.constant.WormholeResultCode;
-import com.mytijian.wormhole.web.dto.ResultDTO;
 import com.mytijian.wormhole.service.service.UserOperLogService;
+import com.mytijian.wormhole.web.domain.DecryptBO;
+import com.mytijian.wormhole.web.dto.ResultDTO;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.HandlerMapping;
-import com.mytijian.wormhole.dao.constant.YesOrNo;
-import com.mytijian.wormhole.dao.model.UserOperLog;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.Map;
 
 /**
  * 操作log拦截记录handler
@@ -53,11 +54,12 @@ public class GlobalOperLogHandler {
             // 接收到请求，记录请求内容
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             HttpServletRequest request = attributes.getRequest();
-            String beanName = joinPoint.getSignature().getDeclaringTypeName();
-            String methodName = joinPoint.getSignature().getName();
+            DecryptBO decryptBO = (DecryptBO)request.getAttribute("decryptBO");
+            /*String beanName = joinPoint.getSignature().getDeclaringTypeName();
+            String methodName = joinPoint.getSignature().getName();*/
             String uri = request.getRequestURI();
             String remoteAddr = getIpAddr(request);
-            String method = request.getMethod();
+            /*String method = request.getMethod();
             String params = "";
             if ("POST".equals(method)) {
                 Object[] paramsArray = joinPoint.getArgs();
@@ -65,15 +67,17 @@ public class GlobalOperLogHandler {
             } else {
                 Map<?, ?> paramsMap = (Map<?, ?>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
                 params = paramsMap.toString();
-            }
+            }*/
 
-            logger.debug("uri=" + uri + "; beanName=" + beanName + "; remoteAddr=" + remoteAddr
-                    + "; methodName=" + methodName + "; params=" + params);
+            /*logger.debug("uri=" + uri + "; beanName=" + beanName + "; remoteAddr=" + remoteAddr
+                    + "; methodName=" + methodName + "; params=" + params);*/
 
             UserOperLog optLog = new UserOperLog();
-//            optLog.setBeanName(beanName);
             optLog.setType(uri);
-//            optLog.setCurUser(user);
+            optLog.setAccessId(Integer.valueOf(decryptBO.getMid()));
+            optLog.setName(decryptBO.getName());
+            optLog.setIdCard(decryptBO.getIdCard());
+            optLog.setOperKey(decryptBO.getTimeStamp());
             optLog.setIpAddr(remoteAddr);
             optLog.setRequestTime(beginTime);
             optLog.setOperDate(new Date());

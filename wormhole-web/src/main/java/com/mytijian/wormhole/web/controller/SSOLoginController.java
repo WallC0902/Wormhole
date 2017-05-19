@@ -67,9 +67,8 @@ public class SSOLoginController {
      */
     @PostMapping("/sso/user/auth")
     public String userAuthSSO (DecryptBO decryptBO) {
-
         if (decryptBO == null) {
-            throw new WormholeException(WormholeResultCode.SSO_AUTH_FAIL_EMPTY_MSG);
+            throw new WormholeException(WormholeResultCode.SSO_AUTH_FAIL_NO_MEAN);
         }
 
         List<UserAuthorization> userAuthList = userAuthorizationService.selectList(new EntityWrapper<UserAuthorization>()

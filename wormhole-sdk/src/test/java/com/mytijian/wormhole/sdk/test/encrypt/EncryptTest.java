@@ -2,7 +2,7 @@ package com.mytijian.wormhole.sdk.test.encrypt;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mytijian.wormhole.base.constant.ResRedirectEnum;
-import com.mytijian.wormhole.sdk.sso.budiler.SSOBuilder;
+import com.mytijian.wormhole.sdk.sso.builder.SSOBuilder;
 
 /**
  * Created by wangchangpeng on 2017/5/16.

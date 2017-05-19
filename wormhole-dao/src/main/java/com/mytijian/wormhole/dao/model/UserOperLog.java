@@ -27,7 +27,7 @@ public class UserOperLog {
     private String type;
 
     @TableField(value = "oper_key")
-    private String operKey;
+    private Long operKey;
 
     private YesOrNo success;
 
@@ -96,12 +96,13 @@ public class UserOperLog {
         this.type = type == null ? null : type.trim();
     }
 
-    public String getOperKey() {
+
+    public Long getOperKey() {
         return operKey;
     }
 
-    public void setOperKey(String operKey) {
-        this.operKey = operKey == null ? null : operKey.trim();
+    public void setOperKey(Long operKey) {
+        this.operKey = operKey;
     }
 
     public YesOrNo getSuccess() {

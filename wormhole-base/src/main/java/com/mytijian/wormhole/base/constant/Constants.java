@@ -11,9 +11,7 @@ public class Constants {
 
     public static String M_ID = "mid";
 
-    public static String SECRET = "secret";
-
-    public static String KEY = "key";
+    public static String SIGNATURE = "signature";
 
     public static String NAME = "name";
 
@@ -25,6 +23,8 @@ public class Constants {
 
     public static String GENDER = "gender";
 
-    public static String MARRIAGE_STATUS = "marriage_status";
+    public static String MARRIAGE_STATUS = "marriageStatus";
+
+    public static String TIME_STAMP = "timeStamp";
 
 }

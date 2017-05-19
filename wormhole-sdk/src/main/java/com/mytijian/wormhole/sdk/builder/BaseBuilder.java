@@ -10,12 +10,16 @@ public class BaseBuilder {
 
     private String mid;
 
-    private String sign;
+    private String signature;
+
+    private Long timestamp;
 
     public JSONObject build(String mid)
     {
         JSONObject json = new JSONObject(true);
         json.put(Constants.M_ID, mid);
+        json.put(Constants.TIME_STAMP, System.currentTimeMillis());
+
         return json;
     }
 
@@ -27,12 +31,19 @@ public class BaseBuilder {
         this.mid = mid;
     }
 
-
-    public String getSign() {
-        return sign;
+    public String getSignature() {
+        return signature;
     }
 
-    public void setSign(String sign) {
-        this.sign = sign;
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

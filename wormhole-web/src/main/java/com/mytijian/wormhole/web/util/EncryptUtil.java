@@ -1,4 +1,4 @@
-package com.mytijian.wormhole.sdk.util;
+package com.mytijian.wormhole.web.util;
 
 import com.mytijian.wormhole.base.tools.RSA;
 

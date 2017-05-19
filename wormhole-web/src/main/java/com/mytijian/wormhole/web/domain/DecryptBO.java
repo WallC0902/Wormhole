@@ -21,6 +21,10 @@ public class DecryptBO {
 
     private String marriageStatus;
 
+    private String signature;
+
+    private Long timeStamp;
+
     public String getMid() {
         return mid;
     }
@@ -75,5 +79,21 @@ public class DecryptBO {
 
     public void setMarriageStatus(String marriageStatus) {
         this.marriageStatus = marriageStatus;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public Long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Long timeStamp) {
+        this.timeStamp = timeStamp;
     }
 }

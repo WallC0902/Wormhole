@@ -1,9 +1,11 @@
-package com.mytijian.wormhole.sdk.sso.budiler;
+package com.mytijian.wormhole.sdk.sso.builder;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mytijian.wormhole.base.constant.ResRedirectEnum;
 import com.mytijian.wormhole.sdk.builder.FirstEncryptBuilder;
 import com.mytijian.wormhole.base.constant.Constants;
+import com.mytijian.wormhole.sdk.util.EncryptUtil;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Created by wangchangpeng on 2017/5/15.
@@ -50,13 +52,35 @@ public class SSOBuilder extends FirstEncryptBuilder {
         this.marriageStatus = marriageStatus;
     }
 
-    public JSONObject build(String mid, String token) throws Exception{
-        JSONObject json = super.build(mid, token);
+    public JSONObject build(String mid, String privateKey) throws Exception{
+        JSONObject json = super.build(mid);
+        if (StringUtils.isBlank(getName())) {
+            throw new Exception("name is null");
+        }
+        json.put(Constants.NAME, getName());
+        if (StringUtils.isBlank(getName())) {
+            throw new Exception("idCard is null");
+        }
+        json.put(Constants.ID_CARD, getIdCard());
 
-        json.put(Constants.RES_REDIRECRT, this.resRedirect);
+        if (StringUtils.isBlank(this.mobile)) {
+            throw new Exception("mobile is null");
+        }
         json.put(Constants.MOBILE, this.mobile);
-        json.put(Constants.GENDER, this.gender);
-        json.put(Constants.MARRIAGE_STATUS, this.marriageStatus);
+
+        if (!StringUtils.isBlank(this.gender)) {
+            json.put(Constants.GENDER, this.gender);
+        }
+        if (!StringUtils.isBlank(this.marriageStatus)) {
+            json.put(Constants.MARRIAGE_STATUS, this.marriageStatus);
+        }
+        if (this.resRedirect == null) {
+            this.resRedirect = ResRedirectEnum.INDEX;
+        }
+        json.put(Constants.RES_REDIRECRT, this.resRedirect);
+
+        String data = json.toJSONString();
+        json.put(Constants.SIGNATURE, EncryptUtil.sign(data, privateKey));
 
         return json;
     }

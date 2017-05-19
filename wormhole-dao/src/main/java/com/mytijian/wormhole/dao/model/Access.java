@@ -23,7 +23,11 @@ public class Access extends Model<Access> implements Serializable {
     @TableField(value = "mt_id")
     private Integer mtId;
 
-    private String token;
+    @TableField(value = "private_key")
+    private String privateKey;
+
+    @TableField(value = "public_key")
+    private String publicKey;
 
     private String status;
 
@@ -76,12 +80,20 @@ public class Access extends Model<Access> implements Serializable {
         this.mtId = mtId;
     }
 
-    public String getToken() {
-        return token;
+    public String getPrivateKey() {
+        return privateKey;
     }
 
-    public void setToken(String token) {
-        this.token = token == null ? null : token.trim();
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
+
+    public String getPublicKey() {
+        return publicKey;
+    }
+
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
     }
 
     public String getStatus() {
