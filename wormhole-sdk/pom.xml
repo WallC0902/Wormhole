@@ -6,13 +6,18 @@
 
     <groupId>com.mytijian.wormhole</groupId>
     <artifactId>wormhole-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>${wormhole.sdk.version}</version>
+
+    <properties>
+        <wormhole.base.version>1.0.0</wormhole.base.version>
+        <wormhole.sdk.version>1.0.0</wormhole.sdk.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.mytijian.wormhole</groupId>
             <artifactId>wormhole-base</artifactId>
-            <version>1.0.0</version>
+            <version>${wormhole.base.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
@@ -24,6 +29,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.8</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.6</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>wormhole-sdk</finalName>
@@ -33,8 +43,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

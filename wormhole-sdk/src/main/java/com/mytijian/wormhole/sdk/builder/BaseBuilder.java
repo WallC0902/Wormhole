@@ -8,13 +8,13 @@ import com.mytijian.wormhole.base.constant.Constants;
  */
 public class BaseBuilder {
 
-    private String mid;
+    private Integer mid;
 
     private String signature;
 
     private Long timestamp;
 
-    public JSONObject build(String mid)
+    public JSONObject build(Integer mid)
     {
         JSONObject json = new JSONObject(true);
         json.put(Constants.M_ID, mid);
@@ -23,11 +23,11 @@ public class BaseBuilder {
         return json;
     }
 
-    public String getMid() {
+    public Integer getMid() {
         return mid;
     }
 
-    public void setMid(String mid) {
+    public void setMid(Integer mid) {
         this.mid = mid;
     }
 

@@ -52,7 +52,7 @@ public class SSOBuilder extends FirstEncryptBuilder {
         this.marriageStatus = marriageStatus;
     }
 
-    public JSONObject build(String mid, String privateKey) throws Exception{
+    public JSONObject build(Integer mid, String privateKey) throws Exception{
         JSONObject json = super.build(mid);
         if (StringUtils.isBlank(getName())) {
             throw new Exception("name is null");
@@ -84,4 +84,8 @@ public class SSOBuilder extends FirstEncryptBuilder {
 
         return json;
     }
+
+
+
+
 }

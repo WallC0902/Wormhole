@@ -2,6 +2,7 @@ package com.mytijian.wormhole.web.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.mytijian.wormhole.dao.constant.StatusEnum;
 import com.mytijian.wormhole.dao.model.Access;
 import com.mytijian.wormhole.service.service.AccessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ import java.util.Date;
 @RequestMapping("/wormhole")
 public class AccessController {
 
-    @Autowired
-    private AccessService accessService;
+//    @Autowired
+//    private AccessService accessService;
 
     @RequestMapping(value = "/access/insert", method = RequestMethod.GET)
     public int insert(){
@@ -30,8 +31,8 @@ public class AccessController {
         access.setCompanyWebsite("www.test22.com");
         access.setEmail("test22@test.com");
         access.setMtId(122);
-        access.setStatus("READY2");
-        access.setToken("ASDQWE123JH1L234HK23J4H2K34K12J3H");
+        access.setStatus(StatusEnum.NORMAL);
+        access.setPrivateKey("ASDQWE123JH1L234HK23J4H2K34K12J3H");
         access.setCreateDate(new Date());
         access.setUpdateDate(new Date());
         access.setCreateBy("123123");

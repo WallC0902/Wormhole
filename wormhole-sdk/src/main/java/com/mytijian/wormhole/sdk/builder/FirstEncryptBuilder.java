@@ -1,9 +1,5 @@
 package com.mytijian.wormhole.sdk.builder;
 
-import com.alibaba.fastjson.JSONObject;
-import com.mytijian.wormhole.base.constant.Constants;
-import com.mytijian.wormhole.base.tools.RSA;
-
 /**
  * Created by wangchangpeng on 2017/5/15.
  */

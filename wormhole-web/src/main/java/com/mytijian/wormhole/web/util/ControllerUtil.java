@@ -2,8 +2,8 @@ package com.mytijian.wormhole.web.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.mytijian.wormhole.base.constant.Constants;
 import com.mytijian.wormhole.base.constant.ResRedirectEnum;
+import com.mytijian.wormhole.service.constant.Constants;
 import com.mytijian.wormhole.service.constant.WormholeResultCode;
 import com.mytijian.wormhole.web.dto.ResultDTO;
 import org.apache.commons.lang.StringUtils;
@@ -55,6 +55,6 @@ public class ControllerUtil {
         return Constants.MT_REDIRECT
                 + "?token="
                 + new BASE64Encoder().encodeBuffer(sessionId.getBytes())
-                + "redirect=" + Constants.MT_HTTP + resRedirectEnum.getUrl();
+                + "&redirect=" + Constants.MT_HTTP + resRedirectEnum.getUrl();
     }
 }

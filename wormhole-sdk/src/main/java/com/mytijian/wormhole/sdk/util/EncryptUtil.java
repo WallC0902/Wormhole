@@ -1,6 +1,7 @@
 package com.mytijian.wormhole.sdk.util;
 
 import com.mytijian.wormhole.base.tools.RSA;
+import com.mytijian.wormhole.sdk.exception.WormholeException;
 
 /**
  * Created by wangchangpeng on 2017/5/15.

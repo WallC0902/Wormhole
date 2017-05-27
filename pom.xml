@@ -28,24 +28,24 @@
     </scm>
 
     <properties>
-        <project.version>1.0.0</project.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mybatis-plus.springboot.version>1.0.0</mybatis-plus.springboot.version>
         <java.version>1.8</java.version>
+        <project.version>1.0.0</project.version>
+        <springboot.version>1.5.3.RELEASE</springboot.version>
+        <wormhole.base.version>1.0.0</wormhole.base.version>
+        <spring.boot.redis.version>1.4.6.RELEASE</spring.boot.redis.version>
+        <spring.boot.dubbox.version>1.0.0-SNAPSHOT</spring.boot.dubbox.version>
     </properties>
+
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.mytijian.wormhole</groupId>
-                <artifactId>wormhole-sdk</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.mytijian.wormhole</groupId>
                 <artifactId>wormhole-base</artifactId>
-                <version>1.0.0</version>
+                <version>${wormhole.base.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

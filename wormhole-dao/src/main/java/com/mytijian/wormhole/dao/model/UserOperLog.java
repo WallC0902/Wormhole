@@ -10,9 +10,6 @@ import java.util.Date;
 public class UserOperLog {
     private Integer id;
 
-    @TableField(value = "user_id")
-    private Integer userId;
-
     @TableField(value = "access_id")
     private Integer accessId;
 
@@ -28,6 +25,9 @@ public class UserOperLog {
 
     @TableField(value = "oper_key")
     private Long operKey;
+
+    @TableField(value = "request_data")
+    private String requestData;
 
     private YesOrNo success;
 
@@ -46,14 +46,6 @@ public class UserOperLog {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public Integer getAccessId() {
@@ -96,13 +88,20 @@ public class UserOperLog {
         this.type = type == null ? null : type.trim();
     }
 
-
     public Long getOperKey() {
         return operKey;
     }
 
     public void setOperKey(Long operKey) {
         this.operKey = operKey;
+    }
+
+    public String getRequestData() {
+        return requestData;
+    }
+
+    public void setRequestData(String requestData) {
+        this.requestData = requestData;
     }
 
     public YesOrNo getSuccess() {

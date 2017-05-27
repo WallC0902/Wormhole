@@ -28,7 +28,7 @@ public class UserAuthorizationServiceImpl extends ServiceImpl<UserAuthorizationM
      *
      * @return {true: 已授权; false: 未授权}
      */
-    public boolean checkUserAuthoriz (String mid, String idCard, RequestType requestType) {
+    public boolean checkUserAuthoriz (Integer mid, String idCard, RequestType requestType) {
 
         Map columnMap = new HashMap<String, String>();
         columnMap.put("access_id", mid);

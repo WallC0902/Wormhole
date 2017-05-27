@@ -29,6 +29,12 @@ public enum WormholeResultCode {
     SSO_AUTH_FAIL_INVALID("-1013", "平台账号已失效"),
     SSO_AUTH_FAIL_DECRYPT("-1014", "认证信息解密密失败，请重试"),
     SSO_AUTH_FAIL_MID_NOT_EXIT("-1015", "未注册平台"),
+    SSO_AUTH_FAIL_REGISTER_ERROR("-1016", "用户注册失败"),
+
+    SSO_AUTH_FAIL_WRONG_ID_CARD("-1017", "认证信息：id_card身份证号格式错误"),
+    SSO_AUTH_FAIL_WRONG_MOBILE("-1018", "认证信息：mobile电话号码格式错误"),
+
+
 
     ;
 

@@ -14,6 +14,9 @@ target/
 *.iws
 *.iml
 *.ipr
+*.log
+logs/*
+logs
 */target/
 
 ### NetBeans ###

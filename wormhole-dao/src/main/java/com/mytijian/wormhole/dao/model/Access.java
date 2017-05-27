@@ -3,6 +3,7 @@ package com.mytijian.wormhole.dao.model;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.mytijian.wormhole.dao.constant.StatusEnum;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -29,7 +30,7 @@ public class Access extends Model<Access> implements Serializable {
     @TableField(value = "public_key")
     private String publicKey;
 
-    private String status;
+    private StatusEnum status;
 
     @TableField(value = "create_date")
     private Date createDate;
@@ -96,12 +97,12 @@ public class Access extends Model<Access> implements Serializable {
         this.publicKey = publicKey;
     }
 
-    public String getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
     public Date getCreateDate() {

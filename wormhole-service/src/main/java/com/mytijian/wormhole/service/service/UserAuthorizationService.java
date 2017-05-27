@@ -9,5 +9,5 @@ import com.mytijian.wormhole.service.constant.RequestType;
  */
 public interface UserAuthorizationService extends IService<UserAuthorization> {
 
-    boolean checkUserAuthoriz (String mid, String idCard, RequestType requestType);
+    boolean checkUserAuthoriz (Integer mid, String idCard, RequestType requestType);
 }

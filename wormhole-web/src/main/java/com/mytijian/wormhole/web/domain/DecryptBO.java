@@ -2,12 +2,14 @@ package com.mytijian.wormhole.web.domain;
 
 import com.mytijian.wormhole.base.constant.ResRedirectEnum;
 
+import java.io.Serializable;
+
 /**
  * Created by wangchangpeng on 2017/5/15.
  */
-public class DecryptBO {
+public class DecryptBO implements Serializable{
 
-    private String mid;
+    private Integer mid;
 
     private String name;
 
@@ -25,11 +27,11 @@ public class DecryptBO {
 
     private Long timeStamp;
 
-    public String getMid() {
+    public Integer getMid() {
         return mid;
     }
 
-    public void setMid(String mid) {
+    public void setMid(Integer mid) {
         this.mid = mid;
     }
 

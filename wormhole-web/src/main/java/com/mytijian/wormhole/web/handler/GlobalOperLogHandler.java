@@ -1,17 +1,17 @@
 package com.mytijian.wormhole.web.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.mytijian.wormhole.dao.constant.YesOrNo;
 import com.mytijian.wormhole.dao.model.UserOperLog;
+import com.mytijian.wormhole.service.constant.Constants;
 import com.mytijian.wormhole.service.constant.WormholeResultCode;
+import com.mytijian.wormhole.service.exception.WormholeException;
 import com.mytijian.wormhole.service.service.UserOperLogService;
 import com.mytijian.wormhole.web.domain.DecryptBO;
 import com.mytijian.wormhole.web.dto.ResultDTO;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class GlobalOperLogHandler {
      * 前置通知，方法调用前被调用
      * @param joinPoint
      */
-    @Around("webRequestLog()")
+    @Before("webRequestLog()")
     public void doBeforeAdvice(JoinPoint joinPoint){
         try {
 
@@ -54,30 +54,17 @@ public class GlobalOperLogHandler {
             // 接收到请求，记录请求内容
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             HttpServletRequest request = attributes.getRequest();
-            DecryptBO decryptBO = (DecryptBO)request.getAttribute("decryptBO");
-            /*String beanName = joinPoint.getSignature().getDeclaringTypeName();
-            String methodName = joinPoint.getSignature().getName();*/
+            DecryptBO decryptBO = (DecryptBO)request.getAttribute(Constants.ATTR_DECRYPT_BO);
             String uri = request.getRequestURI();
             String remoteAddr = getIpAddr(request);
-            /*String method = request.getMethod();
-            String params = "";
-            if ("POST".equals(method)) {
-                Object[] paramsArray = joinPoint.getArgs();
-                params = argsArrayToString(paramsArray);
-            } else {
-                Map<?, ?> paramsMap = (Map<?, ?>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-                params = paramsMap.toString();
-            }*/
-
-            /*logger.debug("uri=" + uri + "; beanName=" + beanName + "; remoteAddr=" + remoteAddr
-                    + "; methodName=" + methodName + "; params=" + params);*/
 
             UserOperLog optLog = new UserOperLog();
             optLog.setType(uri);
-            optLog.setAccessId(Integer.valueOf(decryptBO.getMid()));
+            optLog.setAccessId(decryptBO.getMid());
             optLog.setName(decryptBO.getName());
             optLog.setIdCard(decryptBO.getIdCard());
             optLog.setOperKey(decryptBO.getTimeStamp());
+            optLog.setRequestData(JSONObject.toJSONString(decryptBO));
             optLog.setIpAddr(remoteAddr);
             optLog.setRequestTime(beginTime);
             optLog.setOperDate(new Date());
@@ -90,6 +77,7 @@ public class GlobalOperLogHandler {
 
     /**
      * 后置最终通知（目标方法只要执行完了就会执行后置通知方法）
+     *
      * @param result
      */
     @AfterReturning(returning = "result", pointcut = "webRequestLog()")
@@ -97,7 +85,7 @@ public class GlobalOperLogHandler {
         try {
             // 处理完请求，返回内容
             UserOperLog optLog = threadLocal.get();
-            ResultDTO resultDTO = (ResultDTO) result;
+            ResultDTO resultDTO = JSONObject.parseObject(result.toString(), ResultDTO.class);
             if (resultDTO.getCode().equals(WormholeResultCode.SUCCESS.getCode())) {
                 optLog.setSuccess(YesOrNo.Y);
             } else {
@@ -112,6 +100,25 @@ public class GlobalOperLogHandler {
             logger.error("webRequestLog doAfterReturning() error: ", e);
         }
     }
+
+    /**
+     * 出现异常后统一的log处理
+     *
+     * @param ex
+     */
+    @AfterThrowing(throwing="ex", pointcut="webRequestLog()")
+    public void doAfterThrowing(Exception ex) {
+        // 处理完异常请求，返回内容
+        UserOperLog optLog = threadLocal.get();
+        optLog.setSuccess(YesOrNo.N);
+        optLog.setExceptionInfo(ex.getMessage());
+        long beginTime = optLog.getRequestTime();
+        long requestTime = (System.currentTimeMillis() - beginTime);
+        optLog.setRequestTime(requestTime);
+
+        userOperLogService.insert(optLog);
+    }
+
 
     /**
      * 获取登录用户远程主机ip地址
@@ -133,20 +140,4 @@ public class GlobalOperLogHandler {
         return ip;
     }
 
-    /**
-     * 请求参数拼装
-     *
-     * @param paramsArray
-     * @return
-     */
-    private String argsArrayToString(Object[] paramsArray) {
-        String params = "";
-        if (paramsArray != null && paramsArray.length > 0) {
-            for (int i = 0; i < paramsArray.length; i++) {
-                Object jsonObj = JSON.toJSON(paramsArray[i]);
-                params += jsonObj.toString() + " ";
-            }
-        }
-        return params.trim();
-    }
 }

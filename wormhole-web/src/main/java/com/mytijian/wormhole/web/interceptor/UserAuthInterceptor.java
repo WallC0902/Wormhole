@@ -3,6 +3,8 @@ package com.mytijian.wormhole.web.interceptor;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.mytijian.wormhole.base.constant.Constants;
+import com.mytijian.wormhole.base.tools.DataFormatValidate;
+import com.mytijian.wormhole.base.tools.IdCardValidate;
 import com.mytijian.wormhole.dao.constant.StatusEnum;
 import com.mytijian.wormhole.dao.model.Access;
 import com.mytijian.wormhole.dao.model.UserOperLog;
@@ -16,7 +18,6 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,7 +34,6 @@ import java.util.List;
  *
  * Created by wangchangpeng on 2017/5/11.
  */
-@Configuration
 public class UserAuthInterceptor implements HandlerInterceptor{
 
     private Logger logger = LoggerFactory.getLogger(UserAuthInterceptor.class);
@@ -45,19 +45,11 @@ public class UserAuthInterceptor implements HandlerInterceptor{
 
     @Autowired
     private UserOperLogService userOperLogService;
-    /*public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new HandlerInterceptorAdapter() {
-            @Override
-            public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
-                                     Object handler) throws Exception {
-
-            }
-        }).addPathPatterns("/api*//*");
-    }*/
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-        DecryptBO decryptBO = relaseParam(request);
+        logger.debug(">>>>>>>>>>>>>>>>>>>>>>> come UserAuthInterceptor in >>>>>>>>>>>>>>>>>>>>>>>>");
+        DecryptBO decryptBO = releaseParam(request);
         if (decryptBO == null) {
             logger.info("信息获取转换失败");
             throw new WormholeException(WormholeResultCode.SSO_AUTH_FAIL_NO_MEAN);
@@ -79,31 +71,31 @@ public class UserAuthInterceptor implements HandlerInterceptor{
         }
         checkTimeStamp(decryptBO);
 
-        request.setAttribute("decryptBO", decryptBO);
+        request.setAttribute(com.mytijian.wormhole.service.constant.Constants.ATTR_DECRYPT_BO, decryptBO);
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object o, ModelAndView modelAndView) throws Exception {
-
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
                                 Object o, Exception e) throws Exception {
-
+        logger.debug(">>>>>>>>>>>>>>>>>>>>>>> come UserAuthInterceptor out >>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
 
     /**
-     * 从HttpServletRequest中读取请求参数
+     * 从HttpServletRequest中读取请求json串
+     * 转换为DecryptBO
      *
      * @param request
      * @return
      * @throws IOException
      */
-    private DecryptBO relaseParam (HttpServletRequest request) {
+    private DecryptBO releaseParam (HttpServletRequest request) {
         BufferedReader in= null;
         try {
             in = new BufferedReader(new InputStreamReader(request.getInputStream()));
@@ -112,9 +104,9 @@ public class UserAuthInterceptor implements HandlerInterceptor{
             while ((line = in.readLine()) != null) {
                 sb.append(line);
             }
-            return JSONObject.parseObject(line, DecryptBO.class);
+            return JSONObject.parseObject(sb.toString(), DecryptBO.class);
         } catch (IOException e) {
-            logger.info("信息获取转换失败: " + e.getMessage());
+            logger.error("信息获取转换失败: " + e.getMessage());
             throw new WormholeException(WormholeResultCode.SSO_AUTH_FAIL_NO_MEAN);
         }
     }
@@ -127,12 +119,12 @@ public class UserAuthInterceptor implements HandlerInterceptor{
      */
     private void checkEmpty (DecryptBO decryptBO) {
         if (decryptBO == null) {
-            logger.debug("认证信息：mid为空");
+            logger.debug("认证信息：参数为空");
             throw new WormholeException(WormholeResultCode.PARAM_ERROR);
         }
 
-        String mid = decryptBO.getMid();
-        if (StringUtils.isBlank(mid)) {
+        Integer mid = decryptBO.getMid();
+        if (mid == null) {
             logger.debug("认证信息：mid为空");
             throw new WormholeException(WormholeResultCode.SSO_AUTH_FAIL_EMPTY_MID);
         }
@@ -150,6 +142,11 @@ public class UserAuthInterceptor implements HandlerInterceptor{
         if (StringUtils.isBlank(idCard)) {
             logger.debug("认证信息：id_card为空");
             throw new WormholeException(WormholeResultCode.SSO_AUTH_FAIL_EMPTY_ID_CARD);
+        }
+
+        if (!IdCardValidate.isIdcard(idCard)) {
+            logger.debug("认证信息：id_card身份证号格式错误");
+            throw new WormholeException(WormholeResultCode.SSO_AUTH_FAIL_WRONG_ID_CARD);
         }
         /*String mobile = decryptBO.getMobile();
         if (StringUtils.isBlank(mobile)) {

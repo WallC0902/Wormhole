@@ -19,7 +19,7 @@ public class EncryptTest {
         ssoBuilder.setResRedirect(ResRedirectEnum.INDEX);
         JSONObject jsonObject = null;
         try {
-            jsonObject = ssoBuilder.build("1", "ASDQWE123JH1L234HK23J4H2K34K12J3H");
+            jsonObject = ssoBuilder.build(13001, "MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAorCetixm2GM86ZJkLbI3IRlxmO1E4QEg7Jxnp5P6ny7hilinBYnwMUvAxTQsMg6IumROJ9SvdtnUVoYG19b5AwIDAQABAkEAg4IhyUC7Ic+WPXiIYifdSHQ4z1V8iCVRZ/JGF8AWpvUBcpb4Wb8Mx9qzH+0Eo6jSFbVtQ7BE0vF77judNEcCAQIhAOoJ4hxCZM2je8XV+OXsy4VsUykhicvebpU/Z3Qa1qpxAiEAsfTJOC7kAGxf+Hx9qyrUzpTG09+5Bq6n8lCbiosIjLMCIQDUIFsiNAd73+cKvNNZS1R4vWNuz2g/MX/XpN1W/hB98QIgcBZNs4ydYcLhRAMtqGVm+uNsxMESqqnR8OdiwQXHkc8CIHXMELHQjV2tQCbacqyDcvwuqphQqaggJff7XtobGJ1p");
         } catch (Exception e) {
             e.printStackTrace();
         }
